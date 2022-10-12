@@ -1,0 +1,16 @@
+name: CI​
+on:
+  push:
+    branches: [ "main" ]
+  #pull_request:
+  #  branches: [ "main" ]​
+  workflow_dispatch:
+  # Allows you to run this workflow manually from the Actions tab
+    ​
+jobs:
+  build:
+    runs-on: ubuntu-latest​
+    steps:
+      - uses: actions/checkout@v3​
+      - name: Update Twin model ids
+        run: ./.pipelines/run.sh
