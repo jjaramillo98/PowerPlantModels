@@ -26,6 +26,30 @@
     }
    ],
    "target": "dtmi:assetGen:MaintenancePersonnel;1"
+  },
+  {
+   "@type": "Relationship",
+   "name": "contains",
+   "properties": [
+    {
+     "@type": "Property",
+     "name": "targetModel",
+     "schema": "string"
+    }
+   ],
+   "target": "dtmi:assetGen:PowerGenerator;1"
+  },
+  {
+   "@type": "Relationship",
+   "name": "contains",
+   "properties": [
+    {
+     "@type": "Property",
+     "name": "targetModel",
+     "schema": "string"
+    }
+   ],
+   "target": "dtmi:assetGen:EnergyStore;1"
   }
  ]
 }
