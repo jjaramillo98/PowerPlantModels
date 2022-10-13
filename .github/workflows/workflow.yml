@@ -20,8 +20,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r ./.pipeline/PyScript/requirements.txt
+          python -m pip install -r ./.pipeline/UpdateTwins/requirements.txt
 
       - name: Run Script to Update Twins
         run: |
-          python ./.pipeline/PyScript/main.py
+          python ./.pipeline/UpdateTwins/main.py
