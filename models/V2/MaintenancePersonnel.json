@@ -15,8 +15,8 @@
                 },
                 {
                     "@type": "Property",
-                    "name": "EmployeeId",
-                    "schema": "string"
+                    "name": "OnFloor",
+                    "schema": "boolean"
                 }
             ]
         }
