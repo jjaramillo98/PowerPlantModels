@@ -1,2 +1,8 @@
 # OutPutFiles
 .pipeline/PyScript/__pycache__
+.pipeline/pipeline_runner/target
+
+# Editor Configs
+.idea/
+.vscode/
+.visualstudio/
