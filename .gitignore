@@ -1,6 +1,6 @@
 # OutPutFiles
-.pipeline/PyScript/__pycache__
-.pipeline/pipeline_runner/target
+.pipeline/UploadModels/__pycache__
+.pipeline/UploadModels/venv
 
 # Editor Configs
 .idea/
