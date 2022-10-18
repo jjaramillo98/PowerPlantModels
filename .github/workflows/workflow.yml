@@ -24,4 +24,4 @@ jobs:
 
       - name: Run Script to Update Twins
         run: |
-          python ./.pipeline/UpdateTwins/main.py
+          python ./.pipeline/UploadModels/main.py
