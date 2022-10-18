@@ -42,5 +42,5 @@ jobs:
 
       - name: Run Script to Upload Models
         run: |
-          export AZURE_URL = ${{ secrets.AZURE_URL }}
+          export AZURE_URL=${{ secrets.AZURE_URL }}
           python ./.pipeline/UploadModels/main.py ${{ steps.changed_files.outputs.all_changed_files }}
