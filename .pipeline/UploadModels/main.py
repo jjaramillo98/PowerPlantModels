@@ -1,5 +1,4 @@
 import json
-import os
 import sys
 import time
 
@@ -10,11 +9,11 @@ from azure.digitaltwins.core import DigitalTwinsClient
 start_time = time.time() * 1_000
 logger.info("Beginning Model Upload")
 
-if len(sys.argv) == 1:
+if len(sys.argv) == 2:
     logger.warning("No input files. Exiting")
     exit()
 
-file_paths = sys.argv[1:]
+file_paths = sys.argv[2:]
 models = []
 
 logger.info("Finding Files.")
@@ -37,7 +36,9 @@ if model_len == 0:
     exit()
 
 credential_provider = DefaultAzureCredential()
-dt_host_endpoint = os.getenv("AZURE_URL")
+dt_host_endpoint = sys.argv[1]
+
+logger.info("Endpoint %s", dt_host_endpoint)
 
 dt_client = DigitalTwinsClient(
     endpoint=dt_host_endpoint,
