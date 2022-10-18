@@ -16,7 +16,7 @@ jobs:
         id: changed_files
         uses: tj-actions/changed-files@v32.1.2
         with:
-          seperator: " "
+          separator: " "
         
       - name: Setup Python Environment
         uses: actions/setup-python@v4.3.0
