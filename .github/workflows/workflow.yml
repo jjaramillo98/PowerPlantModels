@@ -12,9 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3 # Checkout repository content​
       
-      - id: changed_files
-        uses: jitterbit/get-changed-files@v1
-
+      - name: Changed Files
+        id: changed_files
+        uses: tj-actions/changed-files@v32.1.2
+        with:
+          seperator: " "
+        
       - name: Setup Python Environment
         uses: actions/setup-python@v4.3.0
         with:
@@ -27,4 +30,4 @@ jobs:
 
       - name: Run Script to Upload Models
         run: |
-          python ./.pipeline/UploadModels/main.py ${{ steps.changed_files.outputs.all }}
+          python ./.pipeline/UploadModels/main.py ${{ steps.changed_files.outputs.all_changed_files }}
