@@ -10,7 +10,11 @@ from azure.digitaltwins.core import DigitalTwinsClient
 start_time = time.time() * 1_000
 logger.info("Beginning Model Upload")
 
-file_paths = sys.argv[1::sys.argv.count()]
+if len(sys.argv) == 1:
+    logger.warning("No input files. Exiting")
+    exit()
+
+file_paths = sys.argv[1:]
 models = []
 
 logger.info("Finding Files.")
@@ -26,7 +30,9 @@ for file_path in file_paths:
         logger.info("Found File %s", file_path)
 spinner.stop()
 
-if models.count() == 0:
+model_len = len(models)
+
+if model_len == 0:
     logger.warning("No Models to upload. Exiting.")
     exit()
 
@@ -39,7 +45,7 @@ dt_client = DigitalTwinsClient(
 )
 
 # noinspection PyArgumentList
-logger.info("Uploading %d models", models.count())
+logger.info("Uploading %d models", model_len)
 
 spinner = Spinner.new(msg="Uploading Models")
 result = dt_client.create_models(models)
