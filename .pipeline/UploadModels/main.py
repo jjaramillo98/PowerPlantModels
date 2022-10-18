@@ -5,6 +5,7 @@ import time
 from jlog import logger, Spinner
 from azure.identity import DefaultAzureCredential
 from azure.digitaltwins.core import DigitalTwinsClient
+from azure.core.exceptions import HttpResponseError
 
 start_time = time.time() * 1_000
 logger.info("Beginning Model Upload")
@@ -49,8 +50,15 @@ dt_client = DigitalTwinsClient(
 logger.info("Uploading %d models", model_len)
 
 spinner = Spinner.new(msg="Uploading Models")
-result = dt_client.create_models(models)
-time.sleep(4)
+
+result = None
+
+try:
+    result = dt_client.create_models(models)
+    time.sleep(4)
+except HttpResponseError as e:
+    logger.exception(e)
+
 spinner.stop()
 
 logger.info("Finished Uploading Models")
