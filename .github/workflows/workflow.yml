@@ -2,8 +2,8 @@ name: CI
 on:
   push:
     branches: [ "main" ]
-  #pull_request:
-  #  branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
   # workflow_dispatch:
   # Allows you to run this workflow manually from the Actions tab​
 jobs:
@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3 # Checkout repository content​
+      
+      - name: changed_files
+        uses: jitterbit/get-changed-files@v2.0
 
       - name: Setup Python Environment
         uses: actions/setup-python@v4.3.0
@@ -22,6 +25,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r ./.pipeline/UploadModels/requirements.txt
 
-      - name: Run Script to Update Twins
+      - name: Run Script to Upload Models
         run: |
-          python ./.pipeline/UploadModels/main.py
+          python ./.pipeline/UploadModels/main.py ${{ steps.changed_files.outputs.all }}
