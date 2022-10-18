@@ -10,7 +10,7 @@ from azure.digitaltwins.core import DigitalTwinsClient
 start_time = time.time() * 1_000
 logger.info("Beginning Model Upload")
 
-file_paths = sys.argv[1::sys.argc]
+file_paths = sys.argv[1::sys.argv.count()]
 models = []
 
 logger.info("Finding Files.")
