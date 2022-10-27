@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [ "model_revision" ]
+    branches: [ "none" ]
   # pull_request:
     # branches: [ "main" ]
   # workflow_dispatch:
