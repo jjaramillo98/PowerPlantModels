@@ -118,6 +118,7 @@ def __run():
     # TODO - Do better
     app.spinner.start("Waiting for completion")
     while not wait_for_completion(p_threads):
+        _ = "Running"
 
     end_time = time.time() * 1_000
     app.spinner.stop()
