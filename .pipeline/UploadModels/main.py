@@ -112,7 +112,7 @@ def __run():
     start_time = time.time() * 1_000
     app = App.init(sys.argv[1])
 
-    models = upload_models(app.dt_client, Logger.get_instance("UploadModels"))
+    models = upload_models(app.dt_client)
 
     p_threads = update_twins(app.dt_client, models)
 
