@@ -23,7 +23,6 @@ class App:
             app.logger.error("No input files. Exiting")
             exit()
 
-        app.spinner.start("In Progress")
         return app
 
 
@@ -116,9 +115,8 @@ def __run():
 
     p_threads = update_twins(app.dt_client, models, app.logger)
 
-    app.logger.info("Waiting for completion")
-
     # TODO - Do better
+    app.spinner.start("Waiting for completion")
     while not wait_for_completion(p_threads):
 
     end_time = time.time() * 1_000
