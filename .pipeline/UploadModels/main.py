@@ -101,7 +101,7 @@ def wait_for_completion(threads: list) -> bool:
     num_complete = 0
 
     for thread in threads:
-        if not thread.isAlive():
+        if not thread.is_alive():
             num_complete += 1
 
     return num_complete == len(threads)
