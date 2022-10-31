@@ -89,7 +89,7 @@ def update_twins(dt_client: DigitalTwinsClient, models: list):
     threads = list()
 
     for model in models:
-        logger.info("Queing additional task to thread pool for model %d", model["@id"])
+        logger.info("Queing additional task to thread pool for model %s", model["@id"])
         thread = threading.Thread(target=query_dt, args=(dt_client, model["@id"]))
         thread.start()
         threads.append(thread)
