@@ -27,7 +27,7 @@ class App:
 
 
 
-def upload_models(dt_client: DigitalTwinsClient, logger):
+def upload_models(dt_client: DigitalTwinsClient):
     logger.info("Finding Files.")
     file_paths = sys.argv[2:]
     models = []
@@ -66,7 +66,7 @@ def prev_version(model_id: str):
     return model_id.replace(model_version, str(int(model_version) - 1))
 
 
-def query_dt(dt_client: DigitalTwinsClient, model_id: str, logger):
+def query_dt(dt_client: DigitalTwinsClient, model_id: str):
     prev_id = prev_version(model_id)
 
     query = f"SELECT * FROM DIGITALTWINS DT WHERE IS_OF_MODEL(DT, '{prev_id}')"
@@ -85,7 +85,7 @@ def query_dt(dt_client: DigitalTwinsClient, model_id: str, logger):
         dt_client.update_digital_twin(digital_twin_id=twin["$dtId"], json_patch=patch_document)
 
 
-def update_twins(dt_client: DigitalTwinsClient, models: list, logger):
+def update_twins(dt_client: DigitalTwinsClient, models: list):
     threads = list()
 
     for model in models:
@@ -114,17 +114,20 @@ def __run():
 
     models = upload_models(app.dt_client, Logger.get_instance("UploadModels"))
 
-    p_threads = update_twins(app.dt_client, models, app.logger)
+    p_threads = update_twins(app.dt_client, models)
+
+    logger.info("Waiting for completion")
 
     # TODO - Do better
     while not wait_for_completion(p_threads):
         _ = "Running"
 
-    app.logger.info("Waiting for completion")
-
     end_time = time.time() * 1_000
 
-    app.logger.info("Updating Twins Complete in %d ms", round(end_time - start_time))
+    logger.info("Updating Twins Complete in %d ms", round(end_time - start_time))
 
+
+app = App.init(sys.argv[1])
+logger = app.logger
 
 __run()
