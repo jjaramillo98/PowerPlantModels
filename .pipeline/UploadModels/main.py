@@ -12,7 +12,7 @@ from azure.core.exceptions import HttpResponseError
 class App:
     def __init__(self, dt_endpoint: str):
         self.spinner = Spinner.new(msg="In Progress")
-        self.logger = Logger.get_instance("UpdateModels")
+        self.logger = Logger.get_instance("Pipeline")
         self.dt_client = DigitalTwinsClient(endpoint=dt_endpoint, credential=DefaultAzureCredential())
 
     @staticmethod
@@ -89,7 +89,8 @@ def update_twins(dt_client: DigitalTwinsClient, models: list, logger):
     threads = list()
 
     for model in models:
-        thread = threading.Thread(target=query_dt, args=(dt_client, model["@id"], logger))
+        logger.info("Queing additional task to thread pool for model %d", model["@id"])
+        thread = threading.Thread(target=query_dt, args=(dt_client, model["@id"], Logger.get_instance("UpdateTwins")))
         thread.start()
         threads.append(thread)
 
@@ -111,17 +112,17 @@ def __run():
     start_time = time.time() * 1_000
     app = App.init(sys.argv[1])
 
-    models = upload_models(app.dt_client, app.logger)
+    models = upload_models(app.dt_client, Logger.get_instance("UploadModels"))
 
     p_threads = update_twins(app.dt_client, models, app.logger)
 
     # TODO - Do better
-    app.spinner.start("Waiting for completion")
     while not wait_for_completion(p_threads):
         _ = "Running"
 
+    app.logger.info("Waiting for completion")
+
     end_time = time.time() * 1_000
-    app.spinner.stop()
 
     app.logger.info("Updating Twins Complete in %d ms", round(end_time - start_time))
 
