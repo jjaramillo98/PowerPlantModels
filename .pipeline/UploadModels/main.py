@@ -110,7 +110,6 @@ def wait_for_completion(threads: list) -> bool:
 
 def __run():
     start_time = time.time() * 1_000
-    app = App.init(sys.argv[1])
 
     models = upload_models(app.dt_client)
 
