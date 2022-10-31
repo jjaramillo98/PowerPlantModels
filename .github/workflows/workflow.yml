@@ -1,9 +1,9 @@
 name: CI
 on:
-  push:
-    branches: [ "none" ]
-  # pull_request:
-    # branches: [ "main" ]
+  # push:
+    # branches: [ "none" ]
+  pull_request:
+    branches: [ "main" ]
   # workflow_dispatch:
   # Allows you to run this workflow manually from the Actions tab​
 
@@ -33,7 +33,7 @@ jobs:
       - name: Setup Python Environment
         uses: actions/setup-python@v4.3.0
         with:
-          python-version: 3.11.0-rc.2
+          python-version: 3.11.0
 
       - name: Install dependencies
         run: |
