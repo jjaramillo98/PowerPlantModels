@@ -27,7 +27,7 @@ class LogFormat(logging.Formatter):
     red      = "\x1b[31;20m"
     bold_red = "\x1b[31;1m"
     reset    = "\x1b[0m"
-    format   = "%(levelname)s - %(asctime)s - %(name)s: %(message)s"
+    format   = "[%(levelname)s][%(asctime)s] - %(name)s: %(message)s"
 
     FORMATS = {
         logging.DEBUG:    green + format + reset,
@@ -43,11 +43,17 @@ class LogFormat(logging.Formatter):
         return formatter.format(record)
 
 
-logger = logging.getLogger("UpdateTwinModelId")
-logger.setLevel(logging.DEBUG)
+class Logger:
 
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-console_handler.setFormatter(LogFormat())
+    @staticmethod
+    def get_instance(module_name: str):
+        logger = logging.getLogger(module_name)
+        logger.setLevel(logging.DEBUG)
 
-logger.addHandler(console_handler)
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.DEBUG)
+        console_handler.setFormatter(LogFormat())
+
+        logger.addHandler(console_handler)
+
+        return logger
