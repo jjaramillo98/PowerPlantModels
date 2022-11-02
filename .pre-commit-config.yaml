@@ -24,4 +24,4 @@ repos:
       name: dtdl-validate
       files: '.json'
       language: script
-      entry: ./Scripts/validate.sh
+      entry: ./.scripts/validate.sh
