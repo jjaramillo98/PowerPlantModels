@@ -13,4 +13,4 @@ pip install pre-commit
 
 pre-commit install
 
-echo "Finished Configuration pre-commit hooks."
+echo "Finished configuring pre-commit hooks."
