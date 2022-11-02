@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
-CONFIG=".pre-commit-config.yaml"
+echo "Installing dependencies for pre-commit."
+
+pip install pre-commit
 
 pre-commit install
 
-echo "Finished Setting Up Hooks"
+echo "Finished Configuration pre-commit hooks."
