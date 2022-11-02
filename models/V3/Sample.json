@@ -1,5 +1,5 @@
 {
-    "@id": "dtmi:assetGen:SampleHome;2",
+    "@id": "dtmi:assetGen:SampleHome;3",
     "@type": "Interface",
     "@context": "dtmi:dtdl:context;2"
 }
