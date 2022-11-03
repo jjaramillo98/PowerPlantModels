@@ -15,10 +15,10 @@ repos:
     hooks:
       - id: prettier
 
-  - repo: local
-    hooks:
-      - id: dtdl-validate
-        name: dtdl-validate
-        files: ".json"
-        language: script
-        entry: ./.scripts/validate.sh
+        #- repo: local
+        #  hooks:
+        #    - id: dtdl-validate
+        #      name: dtdl-validate
+        #      files: ".json"
+        #      language: script
+        #      entry: ./.scripts/validate.sh
