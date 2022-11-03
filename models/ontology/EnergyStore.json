@@ -6,7 +6,7 @@
   "contents": [
     {
       "@type": "Property",
-      "name": "RegenRate",
+      "name": "RegenerationRate",
       "schema": "double"
     },
     {
