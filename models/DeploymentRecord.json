@@ -1,0 +1,23 @@
+{
+  "@context": "dtmi:dtdl:context;2",
+  "@id": "dtmi:deployment:DeploymentRecord;1",
+  "@type": "Interface",
+  "displayName": "Git Deployment Record",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "Author",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "CommitId",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "ChangeURL",
+      "schema": "string"
+    }
+  ]
+}

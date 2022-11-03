@@ -1,5 +1,0 @@
-{
-    "@id": "dtmi:assetGen:SampleHome;3",
-    "@type": "Interface",
-    "@context": "dtmi:dtdl:context;2"
-}
