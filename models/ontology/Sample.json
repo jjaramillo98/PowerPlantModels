@@ -2,7 +2,7 @@
   "@id": "dtmi:com:adt:Sample:home;1",
   "@type": "Interface",
   "@context": "dtmi:dtdl:context;2",
-  "displayName": "Sample Home",
+  "displayName": "SampleHome",
   "contents": [
     {
       "@type": "Property",
